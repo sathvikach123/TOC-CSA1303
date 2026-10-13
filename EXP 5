@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char str[100];
+    int i, len, left = 0, right, flag = 1;
+
+    printf("Enter a binary string: ");
+    scanf("%99s", str);
+
+    len = strlen(str);
+    right = len - 1;
+
+    while (left < len && str[left] == '0')
+        left++;
+
+    while (right >= 0 && str[right] == '0')
+        right--;
+
+    for (i = 0; i < len; i++)
+    {
+        if (str[i] != '0' && str[i] != '1')
+            flag = 0;
+    }
+
+    if (left != len - right - 1)
+        flag = 0;
+
+    for (i = left; i <= right; i++)
+    {
+        if (str[i] != '1')
+            flag = 0;
+    }
+
+    if (flag)
+        printf("String belongs to the CFG");
+    else
+        printf("String does not belong to the CFG");
+
+    return 0;
+}
+OUTPUT:
+Enter a binary string: 0011100
+String belongs to the CFG
